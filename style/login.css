@@ -1,0 +1,188 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+/* reset */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Poppins", sans-serif;
+}
+
+body{
+  background-color: coral;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+/*  
+.left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo h1{
+  font-size: 65px;
+}
+
+.details{
+  margin-top: 20px;
+  padding-inline: 25%; 
+  opacity: 0.8;
+  font-size: 14px;
+  text-align: center;
+}
+.underline{
+  width: 300px;
+  height: 2px;
+  background-color: #333;
+  opacity: 0.2;
+  margin-top: -2px;
+}
+
+.right{
+  background-color: coral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 7%;
+}
+.form{
+  height: 600px;
+  width:  450px;
+  background-color:white;
+  border-radius: 20px;
+  box-shadow:1px 4px 8px 1px rgba(0, 0, 0, 0.2) ;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 550px;
+}
+.input-group{
+  width: 400px;
+}
+
+.input-field{
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+}
+
+input{
+  position: absolute;
+  width: 350%;
+  outline: none;
+  font-size: 2.2em;
+  padding: 0 15px;
+  line-height: 30px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  background-color: transparent;
+  transition: 0.1s ease;
+  z-index: 1111;
+}
+
+.labelLine{
+  position: absolute;
+  color: #333;
+  padding: 0 25px;
+  margin: 0 20px;
+  transition: 0.2s ease;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .logo h1{
+    font-size: 50px;
+  }
+  .underline{
+    width: 200px;
+  }
+
+  .details{
+    font-size: 13px;
+  }
+  .right{
+    padding-inline: 5%;
+  }
+
+  .form{
+    height: 500px;
+    width:  350px;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+  .logo h1{
+    font-size: 30px;
+  }
+  .underline{
+    width: 150px;
+  }
+  .left{
+    margin-inline: -100px;
+  }
+  .details{
+    font-size: 13px;
+  }
+  .right{
+    padding-inline: 5%;
+    background-color:white ;
+  }
+  .form{
+    height: 450px;
+    width:  350px;
+    background-color:coral ;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .backdrop{
+    padding: 40px 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logo h1{
+    font-size: 45px;
+  }
+  .logo img{
+    height: 50px;
+    width: 50px;
+  }
+  .underline{
+    width: 200px;
+  }
+
+  .details{
+    font-size: 12px;
+  }
+  .right{
+    padding: 40px 40px;
+    margin-top: 20px;
+  }
+
+  .form{
+    height: 400px;
+    width:  450px;
+  }
+
+} */
