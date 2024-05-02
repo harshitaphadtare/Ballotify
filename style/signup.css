@@ -134,6 +134,11 @@ input:valid + .labelLine{
 }
 
 /* user help section */
+#userHelp{
+  visibility: hidden;
+  transition: all 0.1s ease;
+}
+
 .user-help{
   display: flex;
   justify-content: space-between;
@@ -143,8 +148,8 @@ input:valid + .labelLine{
   align-items: center;
 }
 #check-remember{
-  height: 18px;
-  width: 18px;
+  height: 12px;
+  width: 12px;
   margin-right: 5px;
   cursor: pointer;
 }
@@ -152,7 +157,7 @@ input:valid + .labelLine{
 .forgot-pass a{
   color: white;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.1s;
 }
 .forgot-pass:hover a{
   color: rgb(255, 158, 158);
@@ -162,7 +167,7 @@ input:valid + .labelLine{
 /* login/logout buttons */
 
 .signup-btn{
-  margin-top: 30px;
+  margin-top: 10px;
   height: 45px;
   width: 100%;
   border-radius: 10px;
