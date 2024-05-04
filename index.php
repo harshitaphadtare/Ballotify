@@ -168,10 +168,12 @@
                 $_SESSION['fullName'] = $data['fullName'];
 
                 if($data['userRole'] == "admin"){
+                    $_SESSION['key'] = 'AdminKey';
                 ?>
-                    <script>location.assign("admin/index.php");</script>
+                    <script>location.assign("admin/index.php?homePage=1");</script>
                 <?php
                 }else{
+                    $_SESSION['key'] = 'VoterKey';
                 ?>
                     <script>location.assign("voter/index.php");</script>
                 <?php
