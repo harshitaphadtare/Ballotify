@@ -65,7 +65,28 @@
                                             <td><?php echo "<b>". $candidateData['candidate_name'] ."</b>"?></td>
                                             <td><?php echo $candidateData['candidate_details'] ?></td>
                                             <td><?php echo $totalVotes ?></td>
-                                            <td><button class="btn btn-md btn-success px-4">Vote</button></td>
+                                            <td>
+                                                <?php 
+                                                $checkIfVoteCasted = mysqli_query($db,"SELECT * FROM votings WHERE voters_id='".$_SESSION['user_id']."' AND election_id= '".$election_id."'") or die(mysqli_error($db)); 
+                                                $isVoteCasted = mysqli_num_rows($checkIfVoteCasted);
+                                                if($isVoteCasted > 0){
+
+                                                    $voteCastedData = mysqli_fetch_assoc($checkIfVoteCasted);
+                                                    $voteCastedToCandidate = $voteCastedData['candidate_id'];
+                                                    if($voteCastedToCandidate == $candidate_id){
+                                                        ?><img src="../assets/voted.png" height="70px" alt="">
+                                                        <?php
+                                                    }
+
+                                                    ?>
+                                                    <?php 
+                                                }else{
+                                                ?>
+                                                    <button class="btn btn-md btn-success px-4" onclick="CastVote(<?php echo $election_id; ?>, <?php echo $candidate_id; ?>,<?php echo $_SESSION['user_id']; ?>)">Vote</button>
+                                                <?php 
+                                                }
+                                                ?>
+                                            </td>
                                         </tr>
 
                                     <?php
@@ -90,7 +111,24 @@
 
 </body>
 </html>
+<script>
+            
+    const CastVote = (election_id,candidate_id,voter_id) => {
+        $.ajax({
+            type: "POST",
+            url: "inc/ajaxCalls.php",
+            data: "e_id=" + election_id + "&c_id=" + candidate_id + "&v_id="+voter_id,
+            success: function(response){
+                if(response == "Success"){
+                    location.assign("index.php?voteCasted=1");
+                }else{
+                    location.assign("index.php?voteNotCasted=1");
+                }
+            }
+        });        
+    };
 
+</script>
 
 <?php
 

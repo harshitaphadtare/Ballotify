@@ -166,6 +166,7 @@
                 session_start();
                 $_SESSION['userRole'] = $data['userRole'];
                 $_SESSION['fullName'] = $data['fullName'];
+                $_SESSION['user_id'] = $data['id'];
 
                 if($data['userRole'] == "admin"){
                     $_SESSION['key'] = 'AdminKey';

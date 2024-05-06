@@ -4,9 +4,11 @@
     require_once("../admin/inc/config.php");
 
     if($_SESSION['key'] != "VoterKey"){
-
-        echo "<script> location.assign('../admin/inc/logout.php'); </script>";
+        ?>
+        <script> location.assign('../admin/logout.php'); </script>
+        <?php
         die;
+        
 
     }
 
@@ -62,7 +64,7 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/inc/logout.php">Logout</a>
+                        <a class="nav-link" href="../admin/logout.php">Logout</a>
                     </li>
                 </ul>
             </div>
