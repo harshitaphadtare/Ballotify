@@ -26,11 +26,15 @@
     
 </head>
 <style>
+    .main-box{
+        margin-top: 100px !important;
+    }
     .boxit{
         border: 1px solid #58B19F;
         border-radius: 20px;
         padding: 30px;
-        margin-inline: 40px;
+        margin-left: 30px;
+        margin-right: 60px;
     }
     .form-group{
         margin-bottom: 12px;
@@ -38,7 +42,7 @@
 </style>
 <body>
 
-    <div class="row m-3">
+    <div class="row m-5 main-box">
         <div class="col-3 boxit shadow">
             <h4 class="h4 mb-5">Add New Election</h4>
              <form method="post">

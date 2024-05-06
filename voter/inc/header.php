@@ -1,11 +1,11 @@
 <?php
 
     session_start();
-    require_once("config.php");
+    require_once("../admin/inc/config.php");
 
-    if($_SESSION['key'] != "AdminKey"){
+    if($_SESSION['key'] != "VoterKey"){
 
-        echo "<script> location.assign('logout.php'); </script>";
+        echo "<script> location.assign('../admin/inc/logout.php'); </script>";
         die;
 
     }
@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Voter Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .navbar-nav .nav-item {
@@ -33,6 +33,15 @@
             color: #2C3A47;
             font-weight: 600;
             transition: all 0.3s ease;
+        }
+        .container{
+            height: 75vh;
+        }
+        .candidate-photo{
+            width: 80px;
+            height: 80px;
+            border: 2px solid #58B19F;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -50,16 +59,10 @@
             <div class="mx-2 collapse d-flex justify-content-end align-items-center navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?homePage=1">Home</a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?addElectionPage=1">Election</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?addCandidatePage=1">Candidate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
+                        <a class="nav-link" href="../admin/inc/logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

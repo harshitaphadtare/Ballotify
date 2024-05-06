@@ -6,6 +6,8 @@
     
 </head>
 <body>
+    <h2 class="mt-5 h2 text-center" style="color: #2C3A47;">Hello <?php echo $_SESSION['fullName'];?>!</h2>
+    <p class="lead text-center mb-5">Welcome to Ballotify...</p>
 
     <div class="row m-3">
         <div class="col-12">

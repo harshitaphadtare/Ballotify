@@ -8,19 +8,17 @@
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
         }
-        .headerTop {
-            padding: 10px;
-        }
+
         .footerBottom {
-            position: absolute;
+            position: fixed; 
             bottom: 0;
             width: 100%;
         }
+
         .content {
             margin-inline: 30px;
-            min-height: calc(100vh - 2 * 10px); 
+            padding-bottom: 60px; /* Adjust padding to prevent content from being hidden under the footer */
         }
     </style>
 </head>

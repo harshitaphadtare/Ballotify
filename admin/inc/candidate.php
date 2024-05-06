@@ -88,6 +88,9 @@
     
 </head>
 <style>
+    .main-box{
+        margin-top: 100px !important;
+    }
     .boxit{
         border: 1px solid #58B19F;
         border-radius: 20px;
@@ -106,7 +109,7 @@
 </style>
 <body>
 
-    <div class="row m-3">
+    <div class="row m-3 main-box">
         <div class="col-3 boxit shadow">
             <h4 class="h4 mb-5">Add New Candidates</h4>
              <form method="post" enctype="multipart/form-data"> <!--enctype allows you to add files (image url) -->
