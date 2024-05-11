@@ -43,7 +43,7 @@
                                         <th>Candidate Name</th>
                                         <th>Candidate Details</th>
                                         <th>No of Votes</th>
-                                        <!-- <th>Action</th> -->
+                                        <th>Result</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,7 +64,18 @@
                                             <td><?php echo "<b>". $candidateData['candidate_name'] ."</b>"?></td>
                                             <td><?php echo $candidateData['candidate_details'] ?></td>
                                             <td><?php echo $totalVotes ?></td>
-                                            
+                                            <td>
+                                            <?php
+                                                $date1 = date_create($curr_date);
+                                                $date2 = date_create($starting_date);
+                                                $diff = date_diff($date1,$date2);
+                                                
+                                                if((int)$diff->format("%R%a")==0){
+                                                    // mysqli_query($db,"UPDATE elections SET status='Active' WHERE id = '".$election_id."'") OR die(mysqli_error($db));
+                                                    
+                                                }
+                                            ?>
+                                            </td>
                                         </tr>
 
                                     <?php

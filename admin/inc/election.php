@@ -1,3 +1,4 @@
+
 <?php 
     if(isset($_GET['added'])){
     ?>
@@ -14,6 +15,24 @@
             });
         </script>
     <?php
+    }else if(isset($_GET['delete_id'])){
+        mysqli_query($db,"DELETE FROM elections WHERE id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
+        mysqli_query($db,"DELETE FROM candidate_details WHERE election_id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
+
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+            Election has been deleted Successfully!
+            <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            document.querySelector(".close").addEventListener('click', () => {
+                document.querySelector(".alert").style.visibility = 'hidden';
+                window.location.href = 'index.php?addElectionPage=1';
+            });
+        </script>
+        <?php
     }
 ?>
 
@@ -84,6 +103,7 @@
                         if($isAnyElectionAdded > 0){
                             $sno=1;
                             while($row = mysqli_fetch_assoc($fetchingData)){
+                                $election_id = $row['id'];
                                 ?>
                                 <tr>
                                     <td><?php echo $sno++; ?></td>
@@ -94,7 +114,7 @@
                                     <td><?php echo $row["status"]; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                        <button class="btn btn-danger btn-sm" onclick="DeleteData(<?php echo $election_id;?>)">Delete</button>
                                     </td>
                                 </tr>
                                 <?php
@@ -114,6 +134,15 @@
 
 </body>
 </html>
+
+<script>
+    const DeleteData = (e_id) =>{
+        let c = confirm("Do you really want to Delete it?");
+        if(c==true){
+            location.assign("index.php?addElectionPage=1&delete_id="+e_id);
+        }
+    }
+</script>
 
 <?php
        

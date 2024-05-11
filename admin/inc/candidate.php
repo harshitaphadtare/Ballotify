@@ -75,6 +75,47 @@
             </script>
         <?php
     }
+    else if(isset($_GET['delete_id'])){
+        mysqli_query($db,"DELETE FROM candidate_details WHERE id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
+
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+            Candidate has been deleted Successfully!
+            <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            document.querySelector(".close").addEventListener('click', () => {
+                document.querySelector(".alert").style.visibility = 'hidden';
+                window.location.href = 'index.php?addCandidatePage=1';
+            });
+        </script>
+        <?php
+    }
+    else if(isset($_GET['edit_id'])){
+        
+        // mysqli_query($db,"DELETE FROM candidate_details WHERE id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
+
+        ?><script>
+            document.getElementById("box-header").innerHTML = "Update Candidate Details";
+            document.querySelector("#box-btn").setAttribute("value","Update Details");
+            </script>
+        <!-- <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+            Candidate Details has been Updated Successfully!
+            <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            document.querySelector(".close").addEventListener('click', () => {
+                document.querySelector(".alert").style.visibility = 'hidden';
+                window.location.href = 'index.php?addCandidatePage=1';
+            });
+        </script> -->
+        <?php
+    }
+    
 
 
 ?>
@@ -113,7 +154,7 @@
 
     <div class="row m-3 main-box">
         <div class="col-3 boxit shadow">
-            <h4 class="h4 mb-5">Add New Candidates</h4>
+            <h4 class="h4 mb-5" id="box-header">Add New Candidates</h4>
              <form method="post" enctype="multipart/form-data"> <!--enctype allows you to add files (image url) -->
                 <div class="form-group">
                     <select class="form-control" name="election_id" required>
@@ -155,7 +196,7 @@
                 <div class="form-group mb-5">
                     <input type="text" class="form-control" name="candidate_details" placeholder="Candidate Details" required>
                 </div>
-                <input type="submit" value="Add Candidate" class="btn btn-success" name="addCandidateBtn">
+                <input type="submit" value="Add Candidate" class="btn btn-success" id="box-btn" name="addCandidateBtn">
             </form>
         </div>   
         <div class="col-8">
@@ -180,7 +221,7 @@
                         if($isAnyCandidateAdded > 0){
                             $sno=1;
                             while($row = mysqli_fetch_assoc($fetchingData)){
-                                
+                                $candidate_id = $row['id'];
                                 $election_id = $row['election_id'];
                                 $fetchingElectionName = mysqli_query($db,"SELECT * FROM elections WHERE id = '".$election_id."'") or die(mysqli_error($db));
                                 $execFetchingElectionNameQuery = mysqli_fetch_assoc($fetchingElectionName) ;
@@ -196,8 +237,8 @@
                                     <td><?php echo $row["candidate_details"]; ?></td>
                                     <td><?php echo $election_name; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                        <button class="btn btn-warning btn-sm" onclick="EditData(<?php echo $candidate_id;?>)">Edit</button>
+                                        <button class="btn btn-danger btn-sm" onclick="DeleteData(<?php echo $candidate_id;?>)">Delete</button>
                                     </td>
                                 </tr>
                                 <?php
@@ -214,7 +255,19 @@
                 </table>
         </div>
     </div>
+    <script>
+        const EditData = (c_id) =>{
 
+            location.assign("index.php?addCandidatePage=1&edit_id="+c_id);
+        };
+
+        const DeleteData = (c_id) =>{
+            let c = confirm("Do you really want to Delete it?");
+            if(c==true){
+                location.assign("index.php?addCandidatePage=1&delete_id="+c_id);
+            }
+        }
+    </script>
 </body>
 </html>
 

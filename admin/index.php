@@ -17,7 +17,7 @@
 
         .content {
             margin-inline: 30px;
-            padding-bottom: 60px; /* Adjust padding to prevent content from being hidden under the footer */
+            padding-bottom: 40px;
         }
     </style>
 </head>
