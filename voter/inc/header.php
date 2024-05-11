@@ -36,14 +36,16 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        .container{
-            height: 75vh;
-        }
+        
         .candidate-photo{
             width: 80px;
             height: 80px;
             border: 2px solid #58B19F;
             border-radius: 50%;
+        }
+        footer {
+            bottom: 0;
+            width: 99%;
         }
     </style>
 </head>

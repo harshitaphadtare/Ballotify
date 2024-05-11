@@ -11,9 +11,8 @@
         }
 
         .footerBottom {
-            position: fixed; 
             bottom: 0;
-            width: 100%;
+            width: 99%;
         }
 
         .content {
@@ -34,6 +33,8 @@
                 require_once("inc/election.php");
             } else if(isset($_GET['addCandidatePage'])){
                 require_once("inc/candidate.php");
+            }else if(isset($_GET['viewResult'])){
+                require_once("inc/viewResults.php");
             }
         ?>
     </div>

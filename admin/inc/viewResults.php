@@ -1,6 +1,5 @@
-<?php
-     
-    require_once("inc/header.php");
+<?php 
+    $election_id = $_GET['viewResult'];
     
 ?>
 
@@ -16,24 +15,17 @@
         border: 2px solid #58B19F;
         border-radius: 50%;
     }
-    
-    .footerBottom {
-        bottom: 0;
-        width: 99%;
-    }
-    
-
     </style>
 </head>
 <body>
-    
-    <div class="container">
+
+<div class="container">
         <div class="my-5">
             <div class="col-12">
-                <h3 class="mb-5">Voters Area</h3>
+                <h3 class="mb-5">Election Results</h3>
 
                 <?php
-                    $fetchingActiveElections = mysqli_query($db,"SELECT * FROM elections WHERE status = 'Active' ") or die(mysqli_error($db));
+                    $fetchingActiveElections = mysqli_query($db,"SELECT * FROM elections WHERE id='".$election_id."' ") or die(mysqli_error($db));
                     $totalActiveElections = mysqli_num_rows($fetchingActiveElections);
 
                     if($totalActiveElections>0){
@@ -51,7 +43,7 @@
                                         <th>Candidate Name</th>
                                         <th>Candidate Details</th>
                                         <th>No of Votes</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,28 +64,7 @@
                                             <td><?php echo "<b>". $candidateData['candidate_name'] ."</b>"?></td>
                                             <td><?php echo $candidateData['candidate_details'] ?></td>
                                             <td><?php echo $totalVotes ?></td>
-                                            <td>
-                                                <?php 
-                                                $checkIfVoteCasted = mysqli_query($db,"SELECT * FROM votings WHERE voters_id='".$_SESSION['user_id']."' AND election_id= '".$election_id."'") or die(mysqli_error($db)); 
-                                                $isVoteCasted = mysqli_num_rows($checkIfVoteCasted);
-                                                if($isVoteCasted > 0){
-
-                                                    $voteCastedData = mysqli_fetch_assoc($checkIfVoteCasted);
-                                                    $voteCastedToCandidate = $voteCastedData['candidate_id'];
-                                                    if($voteCastedToCandidate == $candidate_id){
-                                                        ?><img src="../assets/voted.png" height="70px" alt="">
-                                                        <?php
-                                                    }
-
-                                                    ?>
-                                                    <?php 
-                                                }else{
-                                                ?>
-                                                    <button class="btn btn-md btn-success px-4" onclick="CastVote(<?php echo $election_id; ?>, <?php echo $candidate_id; ?>,<?php echo $_SESSION['user_id']; ?>)">Vote</button>
-                                                <?php 
-                                                }
-                                                ?>
-                                            </td>
+                                            
                                         </tr>
 
                                     <?php
@@ -115,29 +86,5 @@
             </div>
         </div>
     </div>
-
-    <div class="footerBottom">
-        <?php require_once("inc/footer.php"); ?>
-    </div>
-
 </body>
 </html>
-<script>
-            
-    const CastVote = (election_id,candidate_id,voter_id) => {
-        $.ajax({
-            type: "POST",
-            url: "inc/ajaxCalls.php",
-            data: "e_id=" + election_id + "&c_id=" + candidate_id + "&v_id="+voter_id,
-            success: function(response){
-                if(response == "Success"){
-                    location.assign("index.php?voteCasted=1");
-                }else{
-                    location.assign("index.php?voteNotCasted=1");
-                }
-            }
-        });        
-    };
-
-</script>
-

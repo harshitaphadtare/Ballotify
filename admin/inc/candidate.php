@@ -91,11 +91,13 @@
     .main-box{
         margin-top: 100px !important;
     }
+    
     .boxit{
         border: 1px solid #58B19F;
         border-radius: 20px;
         padding: 30px;
         margin-inline: 40px;
+        height: 420px; 
     }
     .form-group{
         margin-bottom: 15px;
