@@ -62,9 +62,9 @@
             </button>
             <div class="mx-2 collapse d-flex justify-content-end align-items-center navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="../admin/logout.php">Logout</a>
                     </li>
