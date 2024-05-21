@@ -59,21 +59,6 @@
                 });
             </script>
         <?php
-    }else if(isset($_GET['added'])){
-        ?>
-            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
-                Candidate details have been added Successfully!
-                <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <script>
-                document.querySelector(".close").addEventListener('click', () => {
-                    document.querySelector(".alert").style.visibility = 'hidden';
-                    window.location.href = 'index.php?addCandidatePage=1';
-                });
-            </script>
-        <?php
     }
     else if(isset($_GET['delete_id'])){
         mysqli_query($db,"DELETE FROM candidate_details WHERE id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
@@ -92,17 +77,16 @@
             });
         </script>
         <?php
-    }
-    else if(isset($_GET['edit_id'])){
-        
-        // mysqli_query($db,"DELETE FROM candidate_details WHERE id = '".$_GET['delete_id']."'") or die(mysqli_error($db));
+    }else if(isset($_GET['edit_id'])){
+        $_SESSION['editId'] =$_GET['edit_id'];
+        require_once("inc/update_candidate.php");
+        require_once("inc/footer.php");
+        exit;
 
-        ?><script>
-            document.getElementById("box-header").innerHTML = "Update Candidate Details";
-            document.querySelector("#box-btn").setAttribute("value","Update Details");
-            </script>
-        <!-- <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
-            Candidate Details has been Updated Successfully!
+    }else if(isset($_GET['updated'])){
+    ?>
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+            Candidate Details have been updated Successfully!
             <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -112,10 +96,13 @@
                 document.querySelector(".alert").style.visibility = 'hidden';
                 window.location.href = 'index.php?addCandidatePage=1';
             });
-        </script> -->
-        <?php
+        </script>
+    <?php
     }
+
+
     
+   
 
 
 ?>
@@ -188,13 +175,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="candidate_name" placeholder="Candidate Name" required>
+                    <input type="text" class="form-control" id="candidate_name" name="candidate_name" placeholder="Candidate Name" required>
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control" name="candidate_photo" required>
                 </div>
                 <div class="form-group mb-5">
-                    <input type="text" class="form-control" name="candidate_details" placeholder="Candidate Details" required>
+                    <input type="text" class="form-control" id="candidate_details" name="candidate_details" placeholder="Candidate Details" required>
                 </div>
                 <input type="submit" value="Add Candidate" class="btn btn-success" id="box-btn" name="addCandidateBtn">
             </form>
@@ -256,17 +243,18 @@
         </div>
     </div>
     <script>
-        const EditData = (c_id) =>{
-
-            location.assign("index.php?addCandidatePage=1&edit_id="+c_id);
-        };
-
-        const DeleteData = (c_id) =>{
+        
+        const DeleteData = (c_id) => {
             let c = confirm("Do you really want to Delete it?");
             if(c==true){
                 location.assign("index.php?addCandidatePage=1&delete_id="+c_id);
             }
         }
+        const EditData = (c_id) =>{
+            location.assign("index.php?addCandidatePage=1&edit_id="+c_id);
+            
+        }
+       
     </script>
 </body>
 </html>
@@ -311,6 +299,6 @@
         }
         
 
-    } 
+    }
 
 ?>

@@ -34,6 +34,29 @@
         </script>
         <?php
     }
+    else if(isset($_GET['election_edit_id'])){
+        $_SESSION['election_edit_id'] =$_GET['election_edit_id'];
+        require_once("inc/update_election.php");
+        require_once("inc/footer.php");
+        exit;
+
+    }else if(isset($_GET['updated'])){
+        ?>
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+                Election Details have been updated Successfully!
+                <button type="button" class="close border bg-transparent" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <script>
+                document.querySelector(".close").addEventListener('click', () => {
+                    document.querySelector(".alert").style.visibility = 'hidden';
+                    window.location.href = 'index.php?addElectionPage=1';
+                });
+            </script>
+        <?php
+        }
+    
 ?>
 
 
@@ -63,7 +86,7 @@
 
     <div class="row m-5 main-box">
         <div class="col-3 boxit shadow">
-            <h4 class="h4 mb-5">Add New Election</h4>
+            <h4 class="h4 mb-5" id="box-header">Add New Election</h4>
              <form method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name="election_topic" placeholder="Election Topic" required>
@@ -77,7 +100,7 @@
                 <div class="form-group mb-5">
                     <input type="text" onfocus="this.type='Date'" class="form-control" name="ending_date" placeholder="Ending Date" required>
                 </div>
-                <input type="submit" value="Add Election" class="btn btn-success" name="addElectionBtn">
+                <input type="submit" id="box-btn" value="Add Election" class="btn btn-success" name="addElectionBtn">
             </form>
         </div>
         <div class="col-8">
@@ -113,7 +136,7 @@
                                     <td><?php echo $row["ending_date"]; ?></td>
                                     <td><?php echo $row["status"]; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                        <button class="btn btn-warning btn-sm" onclick="EditData(<?php echo $election_id;?>)">Edit</button>
                                         <button class="btn btn-danger btn-sm" onclick="DeleteData(<?php echo $election_id;?>)">Delete</button>
                                     </td>
                                 </tr>
@@ -141,6 +164,11 @@
         if(c==true){
             location.assign("index.php?addElectionPage=1&delete_id="+e_id);
         }
+    }
+    const EditData = (e_id) =>{
+
+        location.assign("index.php?addElectionPage=1&election_edit_id="+e_id);
+
     }
 </script>
 
